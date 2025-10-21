@@ -1,10 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
 
-<%= render @movie %>
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
 
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h2 class="card-title"><%= @movie.title %></h2>
+      <p class="card-text"><strong>Diretor:</strong> <%= @movie.director %></p>
+      <p class="card-text"><strong>Ano:</strong> <%= @movie.release_year %></p>
+      <p class="card-text"><strong>Duração:</strong> <%= @movie.duration %> minutos</p>
+      <p class="card-text"><strong>Sinopse:</strong></p>
+      <p><%= @movie.synopsis %></p>
+    </div>
+  </div>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
+  <div class="d-flex gap-2 mb-4">
+    <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-primary" %>
+    <%= link_to "Back to movies", movies_path, class: "btn btn-secondary" %>
+    <%= button_to "Destroy this movie", @movie, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
+
+  <hr>
+
+  <h4>Comentários (<%= @movie.comments.count %>)</h4>
+
+  <% @movie.comments.order(created_at: :desc).each do |comment| %>
+    <div class="border rounded p-2 mb-2">
+      <strong><%= comment.author_name %>:</strong>
+      <p><%= comment.content %></p>
+      <small class="text-muted"><%= l(comment.created_at, format: :short) %></small>
+    </div>
+  <% end %>
+
+  <%= render "comments/form", movie: @movie, comment: @comment %>
+
 </div>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :movies
+  get "comments/create"
+  resources :movies do
+    resources :comments, only: [:create]
+  end
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,5 +15,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "movies#index"
 end

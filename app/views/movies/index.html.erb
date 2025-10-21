@@ -1,16 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Catálogo de Filmes</h1>
 
-<% content_for :title, "Movies" %>
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text text-truncate"><%= movie.synopsis %></p>
+            <a href="<%= movie_path(movie) %>" class="btn btn-primary btn-sm">Ver detalhes</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<h1>Movies</h1>
-
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @movies %>
+  </div>
 </div>
-
-<%= link_to "New movie", new_movie_path %>

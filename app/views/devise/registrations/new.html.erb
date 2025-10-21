@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4 fw-bold">Crie sua conta</h2>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <!-- Campo nome -->
+            <div class="mb-3">
+              <%= f.label :name, "Nome", class: "form-label fw-semibold" %>
+              <%= f.text_field :name, class: "form-control", placeholder: "Digite seu nome", required: true %>
+            </div>
+
+            <!-- Campo email -->
+            <div class="mb-3">
+              <%= f.label :email, "Email", class: "form-label fw-semibold" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "exemplo@dominio.com", required: true %>
+            </div>
+
+            <!-- Campo senha -->
+            <div class="mb-3">
+              <%= f.label :password, "Senha", class: "form-label fw-semibold" %>
+              <% if @minimum_password_length %>
+                <small class="text-muted">(<%= @minimum_password_length %> caracteres no mínimo)</small>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Digite sua senha", required: true %>
+            </div>
+
+            <!-- Confirmação de senha -->
+            <div class="mb-4">
+              <%= f.label :password_confirmation, "Confirmar senha", class: "form-label fw-semibold" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirme sua senha", required: true %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Cadastrar", class: "btn btn-primary btn-lg rounded-3" %>
+            </div>
+          <% end %>
+
+          <hr class="my-4">
+
+          <div class="text-center">
+            <p class="mb-1 text-muted">Já tem uma conta?</p>
+            <%= link_to "Entrar", new_session_path(resource_name), class: "btn btn-outline-secondary rounded-3" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
