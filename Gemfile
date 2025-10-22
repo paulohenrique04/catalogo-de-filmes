@@ -69,3 +69,9 @@ gem "kaminari"
 gem "bootstrap", "~> 5.3.2"
 
 gem "sassc-rails"
+
+# gem "openai"
+
+gem 'ruby-openai' # Mais recente
+
+gem 'dotenv-rails', groups: [:development, :test]

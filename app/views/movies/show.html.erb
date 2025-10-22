@@ -9,11 +9,18 @@
   <div class="card shadow mb-4">
     <div class="card-body">
       <h2 class="card-title"><%= @movie.title %></h2>
+      <% if @movie.image.attached? %>
+        <%= image_tag @movie.image, width: 200 %>
+      <% end %>
       <p class="card-text"><strong>Diretor:</strong> <%= @movie.director %></p>
       <p class="card-text"><strong>Ano:</strong> <%= @movie.release_year %></p>
       <p class="card-text"><strong>Duração:</strong> <%= @movie.duration %> minutos</p>
       <p class="card-text"><strong>Sinopse:</strong></p>
       <p><%= @movie.synopsis %></p>
+      <p>
+        <strong>Categorias:</strong>
+        <%= @movie.categories.map(&:name).join(", ") %>
+      </p>
     </div>
   </div>
 

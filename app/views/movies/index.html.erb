@@ -7,6 +7,16 @@
         <div class="card shadow-sm h-100">
           <div class="card-body">
             <h5 class="card-title"><%= movie.title %></h5>
+            <% if movie.image.attached? %>
+              <%= image_tag movie.image, width: 200 %>
+            <% else %>
+              <div class="text-center border rounded p-4" style="width: 200px;">
+                <div class="text-muted">
+                  <i class="bi bi-image fs-1"></i>
+                  <p class="mt-2 mb-0">Sem poster disponível</p>
+                </div>
+              </div>
+            <% end %>
             <p class="card-text text-truncate"><%= movie.synopsis %></p>
             <a href="<%= movie_path(movie) %>" class="btn btn-primary btn-sm">Ver detalhes</a>
           </div>

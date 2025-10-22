@@ -41,6 +41,32 @@
             <%= form.text_field :director, class: "form-control", placeholder: "Nome do diretor" %>
           </div>
 
+          <div class="field">
+            <%= form.label :image, "Poster" %>
+            <%= form.file_field :image %>
+          </div>
+
+          <div class="mb-4">
+            <%= form.label :category_ids, "Categorias", class: "form-label fw-semibold" %>
+            
+            <div class="alert alert-light border py-2">
+              <small class="text-muted">
+                <i class="bi bi-mouse"></i> Segure <kbd>Ctrl</kbd> (Windows/Linux) ou <kbd>Cmd</kbd> (Mac) para selecionar múltiplas categorias
+              </small>
+            </div>
+            
+            <%= form.collection_select :category_ids, 
+                Category.all.order(:name), 
+                :id, 
+                :name, 
+                { include_blank: "Selecione as categorias..." }, 
+                { 
+                  multiple: true, 
+                  class: "form-select",
+                  size: 6
+                } %>
+          </div>
+
           <div class="d-grid">
             <%= form.submit movie.new_record? ? "Criar Filme" : "Atualizar Filme", class: "btn btn-primary btn-lg" %>
           </div>
