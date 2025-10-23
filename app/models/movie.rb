@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :tags
   has_many :comments, dependent: :destroy
   has_one_attached :image
 
@@ -9,4 +10,7 @@ class Movie < ApplicationRecord
   validates :duration, numericality: { only_integer: true, greater_than: 0 }
 
   scope :newest_first, -> { order(created_at: :desc) }
+  scope :search, ->(query) {
+    where("LOWER(title) LIKE :q OR LOWER(director) LIKE :q OR CAST(release_year AS TEXT) LIKE :q", q: "%#{query.downcase}%") if query.present?
+  }
 end

@@ -21,6 +21,10 @@
         <strong>Categorias:</strong>
         <%= @movie.categories.map(&:name).join(", ") %>
       </p>
+      <p>
+        <strong>Tags:</strong>
+        <%= @movie.tags.map(&:name).join(", ") %>
+      </p>
     </div>
   </div>
 

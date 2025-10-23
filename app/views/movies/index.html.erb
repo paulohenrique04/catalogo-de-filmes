@@ -1,6 +1,27 @@
 <div class="container mt-4">
   <h1 class="text-center mb-4">Catálogo de Filmes</h1>
 
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <%= form_with url: movies_path, method: :get, local: true, class: "d-flex flex-wrap gap-2" do %>
+        <!-- Campo de busca -->
+        <%= text_field_tag :query, params[:query], placeholder: "Buscar por título, diretor ou ano...", class: "form-control flex-grow-1" %>
+
+        <!-- Filtro por categoria -->
+        <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), prompt: "Filtrar por categoria", class: "form-select" %>
+
+        <!-- Filtro por ano -->
+        <%= number_field_tag :year, params[:year], placeholder: "Ano de lançamento", class: "form-control" %>
+
+        <!-- Filtro por diretor -->
+        <%= text_field_tag :director, params[:director], placeholder: "Filtrar por diretor", class: "form-control" %>
+
+        <!-- Botão -->
+        <%= submit_tag "Filtrar", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row">
     <% @movies.each do |movie| %>
       <div class="col-md-4 mb-4">

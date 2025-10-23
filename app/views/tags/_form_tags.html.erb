@@ -1,0 +1,25 @@
+<div class="field mb-3">
+  <%= label_tag :tags, "Tags" %>
+
+  <div class="input-group mb-2">
+    <%= text_field_tag "tag_names[]", nil, placeholder: "Digite uma tag", class: "form-control" %>
+    <button type="button" class="btn btn-secondary" onclick="addTagInput()">Adicionar</button>
+  </div>
+
+  <div id="additional-tags"></div>
+</div>
+
+<script>
+  function addTagInput() {
+    const container = document.getElementById("additional-tags");
+    const inputGroup = document.createElement("div");
+    inputGroup.className = "input-group mb-2";
+
+    inputGroup.innerHTML = `
+      <input type="text" name="tag_names[]" class="form-control" placeholder="Digite uma tag">
+      <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">Remover</button>
+    `;
+
+    container.appendChild(inputGroup);
+  }
+</script>
