@@ -20,13 +20,6 @@ RUN bundle install --without development test
 # Copia todo o código
 COPY . .
 
-# Passa a chave mestre para pré-compilar assets
-ARG RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY=$RAILS_MASTER_KEY
-
-# Pré-compila assets em produção
-RUN bundle exec rails assets:precompile
-
 # Cria pasta para pids
 RUN mkdir -p tmp/pids
 
