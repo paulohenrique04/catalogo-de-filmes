@@ -20,11 +20,14 @@ RUN bundle install --without development test
 # Copia todo o código
 COPY . .
 
+# Pré-compila assets
+RUN bundle exec rails assets:precompile
+
 # Cria pasta para pids
 RUN mkdir -p tmp/pids
 
 # Porta padrão do Rails
 EXPOSE 3000
 
-# Comando para rodar a aplicação
-CMD ["bin/rails", "server", "-b", "0.0.0.0"]
+# Comando para rodar a aplicação em produção
+CMD ["bin/rails", "db:migrate", "&&", "bin/rails", "server", "-b", "0.0.0.0"]
