@@ -16,9 +16,12 @@ RUN bundle install --without development test
 
 COPY . .
 
-# Apenas cria a estrutura de diretórios necessária
+# Tenta compilar assets (opcional)
+RUN bundle exec rails assets:precompile 2>/dev/null || echo "Skipping assets precompile"
+
 RUN mkdir -p tmp/pids log
 
 EXPOSE 3000
 
+# Script de inicialização que espera o banco ficar pronto
 CMD ["sh", "-c", "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"]
