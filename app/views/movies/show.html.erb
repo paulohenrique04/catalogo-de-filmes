@@ -29,9 +29,13 @@
   </div>
 
   <div class="d-flex gap-2 mb-4">
-    <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-primary" %>
-    <%= link_to "Back to movies", movies_path, class: "btn btn-secondary" %>
-    <%= button_to "Destroy this movie", @movie, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% if user_signed_in? && current_user == @movie.user %>
+      <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-primary" %>
+      <%= link_to "Back to movies", movies_path, class: "btn btn-secondary" %>
+      <%= button_to "Destroy this movie", @movie, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Back to movies", movies_path, class: "btn btn-secondary" %>
+    <% end %>
   </div>
 
   <hr>

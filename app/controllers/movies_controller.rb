@@ -105,17 +105,4 @@ class MoviesController < ApplicationController
         redirect_to movies_path, alert: "Você não está autorizado a realizar esta ação."
       end
     end
-
-    def fetch_movie_data_from_ai(title)
-      service = AiMovieService.new
-      movie_data = service.fetch_movie_information(title)
-
-      unless movie_data[:error]
-        @movie.title = movie_data["title"] if movie_data["title"].present?
-        @movie.synopsis = movie_data["synopsis"] if movie_data["synopsis"].present?
-        @movie.release_year = movie_data["year"] if movie_data["year"].present?
-        @movie.director = movie_data["director"] if movie_data["director"].present?
-        @movie.duration = movie_data["duration"] if movie_data["duration"].present?
-      end
-    end
 end

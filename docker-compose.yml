@@ -27,6 +27,8 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/catalogo_filmes_development
+    env_file:
+      - .env
   
   mailcatcher:
     image: sj26/mailcatcher

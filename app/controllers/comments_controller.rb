@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     # @movie = Movie.find(params[:movie_id])
-    # @comment = @movie.comments.build(comment_params)
+    @comment = @movie.comments.build(comment_params)
 
     if @comment.save
       redirect_to movie_path(@movie), notice: "Comentário criado com sucesso!"

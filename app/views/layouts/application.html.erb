@@ -52,6 +52,9 @@
               <li class="nav-item">
                 <%= link_to "Adicionar Filme", new_movie_path, class: "nav-link btn btn-primary text-white ms-2" %>
               </li>
+              <li class="nav-item">
+                <%= link_to "Categorias", categories_path, class: "nav-link btn btn-secondary text-white ms-2" %>
+              </li>
             <% else %>
               <li class="nav-item">
                 <%= link_to "Entrar", new_user_session_path, class: "nav-link" %>

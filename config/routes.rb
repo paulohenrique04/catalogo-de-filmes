@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "categories/index"
+  get "categories/new"
+  get "categories/create"
   get "comments/create"
   resources :movies do
     resources :comments, only: [:create]
@@ -6,6 +9,8 @@ Rails.application.routes.draw do
       get 'fetch_ai_data'
     end
   end
+
+  resources :categories
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
