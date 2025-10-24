@@ -1,0 +1,26 @@
+FROM ruby:3.3.0
+
+RUN apt-get update -qq && \
+    apt-get install -y nodejs postgresql-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Configuração para produção
+ENV RAILS_ENV=production
+ENV RACK_ENV=production
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle install --without development test
+
+COPY . .
+
+# Pré-compilar assets (se usar)
+RUN bundle exec rails assets:precompile
+
+RUN mkdir -p tmp/pids
+
+EXPOSE 3000
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
