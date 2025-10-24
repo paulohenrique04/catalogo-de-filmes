@@ -1,6 +1,5 @@
 FROM ruby:3.3.0
 
-# Instala Node.js 20, Yarn e PostgreSQL client
 RUN apt-get update -qq && \
     apt-get install -y curl gnupg build-essential libpq-dev && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
@@ -9,25 +8,17 @@ RUN apt-get update -qq && \
 
 WORKDIR /app
 
-# Variáveis de ambiente para produção
 ENV RAILS_ENV=production
 ENV RACK_ENV=production
 
-# Copia Gemfile e instala gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --without development test
 
-# Copia todo o código
 COPY . .
 
-# Pré-compila assets
-RUN bundle exec rails assets:precompile
+# Apenas cria a estrutura de diretórios necessária
+RUN mkdir -p tmp/pids log
 
-# Cria pasta para pids
-RUN mkdir -p tmp/pids
-
-# Porta padrão do Rails
 EXPOSE 3000
 
-# Comando para rodar a aplicação em produção
-CMD ["bin/rails", "db:migrate", "&&", "bin/rails", "server", "-b", "0.0.0.0"]
+CMD ["sh", "-c", "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"]
