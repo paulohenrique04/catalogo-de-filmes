@@ -339,6 +339,7 @@ GEM
       faraday (>= 1)
       faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
+    ruby_http_client (3.5.5)
     rubyzip (3.2.0)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -355,6 +356,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    sendgrid-ruby (6.7.0)
+      ruby_http_client (~> 3.4)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -448,6 +451,7 @@ DEPENDENCIES
   ruby-openai
   sassc-rails
   selenium-webdriver
+  sendgrid-ruby
   solid_cable
   solid_cache
   solid_queue
