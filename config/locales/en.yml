@@ -28,4 +28,310 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        current_password: "Current Password"
+        name: "Name"
+        remember_me: "Remember me"
+      movie:
+        title: "Title"
+        synopsis: "Synopsis"
+        release_year: "Release Year"
+        duration: "Duration"
+        director: "Director"
+        image: "Poster"
+        categories: "Categories"
+        category_ids: "Categories"
+      category:
+        name: "Name"
+      comment:
+        author_name: "Author Name"
+        content: "Content"
+    models:
+      user: "User"
+      movie: "Movie"
+      category: "Category"
+      comment: "Comment"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "can't be blank"
+              invalid: "is invalid"
+              taken: "has already been taken"
+            password:
+              blank: "can't be blank"
+              too_short: "is too short (minimum: %{count} characters)"
+              confirmation: "doesn't match confirmation"
+            password_confirmation:
+              blank: "can't be blank"
+              confirmation: "doesn't match password"
+            current_password:
+              blank: "can't be blank"
+              invalid: "is invalid"
+            name:
+              blank: "can't be blank"
+        movie:
+          attributes:
+            title:
+              blank: "can't be blank"
+            synopsis:
+              blank: "can't be blank"
+            release_year:
+              blank: "can't be blank"
+              not_a_number: "must be a number"
+            duration:
+              blank: "can't be blank"
+              not_a_number: "must be a number"
+            director:
+              blank: "can't be blank"
+            category_ids:
+              blank: "must select at least one category"
+
+  errors:
+    messages:
+      blank: "can't be blank"
+      invalid: "is invalid"
+      taken: "has already been taken"
+      too_short: "is too short (minimum: %{count} characters)"
+      confirmation: "doesn't match confirmation"
+    attributes:
+      current_password:
+        blank: "can't be blank"
+        invalid: "is invalid"
+
+  helpers:
+    label:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        current_password: "Current Password"
+        name: "Name"
+        remember_me: "Remember me"
+      movie:
+        title: "Title"
+        synopsis: "Synopsis"
+        release_year: "Release Year"
+        duration: "Duration (minutes)"
+        director: "Director"
+        image: "Poster"
+        category_ids: "Categories"
+      category:
+        name: "Category Name"
+      comment:
+        author_name: "Your name"
+        content: "Comment"
+
+  devise:
+    shared:
+      links:
+        sign_in: "Sign in"
+        sign_up: "Sign up"
+        forgot_password: "Forgot your password?"
+        confirmation_instructions: "Didn't receive confirmation instructions?"
+        unlock_instructions: "Didn't receive unlock instructions?"
+        didn_t_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+        didn_t_receive_unlock_instructions: "Didn't receive unlock instructions?"
+        send_me_reset_password_instructions: "Send me reset password instructions"
+    sessions:
+      new:
+        sign_in: "Sign in"
+        remember_me: "Remember me"
+        email_placeholder: "your@email.com"
+        password_placeholder: "Your password"
+        no_account: "Don't have an account?"
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+      already_signed_out: "Already signed out."
+      destroy:
+        sign_out: "Sign out"
+    registrations:
+      new:
+        sign_up: "Sign up"
+        name_placeholder: "Enter your name"
+        email_placeholder: "example@domain.com"
+        password_placeholder: "Enter your password"
+        password_confirmation_placeholder: "Confirm your password"
+        minimum_chars: "(minimum %{count} characters)"
+        already_have_account: "Already have an account?"
+      edit:
+        edit_profile: "Edit Profile"
+        cancel_account: "Cancel my account"
+        update: "Update"
+        leave_blank: "leave blank if you don't want to change it"
+        are_you_sure: "Are you sure?"
+        we_need_your_current_password: "we need your current password to confirm your changes"
+        errors_header: "%{count} error(s) prevented your changes from being saved:"
+        name_placeholder: "Enter your name"
+        email_placeholder: "Enter your email"
+        waiting_confirmation: "Currently waiting confirmation for"
+        leave_blank: "Leave blank if you don't want to change it"
+        minimum_chars: "characters minimum"
+        unhappy: "Unhappy?"
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize updating your email address."
+      updated: "Your account has been updated successfully."
+      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+    passwords:
+      new:
+        forgot_password: "Forgot your password?"
+      edit:
+        change_password: "Change your password"
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+    confirmations:
+      new:
+        resend_confirmation: "Resend confirmation instructions"
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirmed: "Your email address has been successfully confirmed."
+    unlocks:
+      new:
+        resend_unlock: "Resend unlock instructions"
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to unlock your account in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock instructions"
+    failures:
+      unauthenticated: "You need to sign in or sign up before continuing."
+      unconfirmed: "You have to confirm your email address before continuing."
+      locked: "Your account is locked."
+      invalid: "Invalid Email or password."
+      invalid_token: "Invalid authentication token."
+      timeout: "Your session expired. Please sign in again to continue."
+      inactive: "Your account is not activated yet."
+      already_authenticated: "You are already signed in."
+  
+  time:
+    formats:
+      short: "%m/%d/%Y %I:%M %p"
+      long: "%B %d, %Y at %I:%M %p"
+    am: "am"
+    pm: "pm"
+  
+  date:    
+    formats:
+      short: "%m/%d/%Y"
+      long: "%B %d, %Y"
+
+  movies:
+    index:
+      title: "Movie Catalog"
+      search_placeholder: "Search by title, director or year..."
+      filter_category: "Filter by category"
+      filter_year: "Release year"
+      filter_director: "Filter by director"
+      filter_button: "Filter"
+      no_image: "No poster available"
+      view_details: "View details"
+      comments: "Comments"
+    show:
+      director: "Director"
+      release_year: "Year"
+      duration: "Duration"
+      synopsis: "Synopsis"
+      categories: "Categories"
+      tags: "Tags"
+      edit_movie: "Edit movie"
+      back_to_movies: "Back to movies"
+      destroy_movie: "Delete movie"
+      comments: "Comments"
+      comments_count: "Comments (%{count})"
+    form:
+      new_movie: "New Movie"
+      edit_movie: "Edit Movie"
+      title_placeholder: "Enter movie title"
+      ai_search_button: "Fetch data with AI"
+      ai_loading: "Fetching movie information..."
+      ai_hint: "Enter the title and click 'Fetch data with AI' to auto-fill"
+      synopsis_placeholder: "Write the synopsis"
+      release_year_placeholder: "Ex: 2025"
+      duration_placeholder: "Duration in minutes"
+      director_placeholder: "Director's name"
+      categories_hint: "Hold Ctrl (Windows/Linux) or Cmd (Mac) to select multiple categories"
+      categories_prompt: "Select categories..."
+      submit_create: "Create Movie"
+      submit_update: "Update Movie"
+      errors_header: "%{count} error(s) prevented this movie from being saved:"
+    new:
+      add_movie: "Add Movie"
+      back_to_home: "Back to Home"
+    edit:
+      show_this_movie: "View this movie"
+      back_to_movies: "Back to movies"
+
+  categories:
+    index:
+      title: "Categories"
+      add_category: "Add Category"
+      name: "Name"
+      actions: "Actions"
+      edit: "Edit"
+      delete: "Delete"
+      no_categories: "No categories registered yet."
+    form:
+      new_category: "New Category"
+      edit_category: "Edit Category"
+      name_placeholder: "Enter category name"
+      save: "Save"
+      back: "Back"
+      errors_header: "The following errors were found:"
+
+  comments:
+    form:
+      add_comment: "Add Comment"
+      author_name_placeholder: "Enter your name"
+      content_placeholder: "Write your comment"
+      submit: "Submit"
+  
+  tags:
+    form:
+      tags_label: "Tags"
+      tag_placeholder: "Enter a tag"
+      add_button: "Add"
+      remove_button: "Remove"
+
+  common:
+    minutes: "minutes"
+    no_comments: "No comments yet."
+    app_name: "Movie Catalog"
+    language: "Language"
+    portuguese: "Portuguese"
+    english: "English"
+    locale_changed: "Language changed successfully!"
+    toggle_navigation: "Toggle navigation"
+    close: "Close"
+    actions:
+      edit: "Edit"
+      delete: "Delete"
+      save: "Save"
+      cancel: "Cancel"
+      back: "Back"
+      submit: "Submit"
+      filter: "Filter"
+      view_details: "View details"
+    messages:
+      are_you_sure: "Are you sure?"
+      successfully_created: "%{resource} was successfully created!"
+      successfully_updated: "%{resource} was successfully updated!"
+      successfully_destroyed: "%{resource} was successfully destroyed!"
+      no_records: "No records found."
+    datetime:
+      formats:
+        short: "%m/%d/%Y %I:%M %p"

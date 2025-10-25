@@ -27,40 +27,78 @@
   <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="/">Catálogo</a>
+        <a class="navbar-brand" href="/">
+          <i class="bi bi-film"></i> <%= t('common.app_name') %>
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarNav" aria-expanded="false" aria-label="<%= t('common.toggle_navigation') %>">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
 
+            <li class="nav-item dropdown me-3">
+              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-translate"></i> <%= t('common.language') %>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to set_locale_path(:'pt-BR'), class: "dropdown-item #{'active' if I18n.locale == :'pt-BR'}" do %>
+                    <i class="bi bi-flag-fill text-primary"></i> <%= t('common.portuguese') %>
+                    <% if I18n.locale == :'pt-BR' %>
+                      <i class="bi bi-check text-success"></i>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to set_locale_path(:en), class: "dropdown-item #{'active' if I18n.locale == :en}" do %>
+                    <i class="bi bi-flag-fill text-danger"></i> <%= t('common.english') %>
+                    <% if I18n.locale == :en %>
+                      <i class="bi bi-check text-success"></i>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+
             <% if user_signed_in? %>
               <li class="nav-item">
                 <span class="nav-link text-light">
-                  Olá, <%= current_user.name %>
+                  <i class="bi bi-person-circle"></i> <%= current_user.name %>
                 </span>
               </li>
               <li class="nav-item">
-                <%= link_to "Editar perfil", edit_user_registration_path, class: "nav-link" %>
+                <%= link_to edit_user_registration_path, class: "nav-link" do %>
+                  <i class="bi bi-pencil-square"></i> <%= t('devise.registrations.edit.edit_profile') %>
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link text-danger border-0 bg-transparent" %>
+                <%= button_to destroy_user_session_path, method: :delete, class: "nav-link text-danger border-0 bg-transparent" do %>
+                  <i class="bi bi-box-arrow-right"></i> <%= t('devise.sessions.destroy.sign_out') %>
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "Adicionar Filme", new_movie_path, class: "nav-link btn btn-primary text-white ms-2" %>
+                <%= link_to new_movie_path, class: "nav-link btn btn-primary text-white ms-2" do %>
+                  <i class="bi bi-plus-circle"></i> <%= t('movies.new.add_movie') %>
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "Categorias", categories_path, class: "nav-link btn btn-secondary text-white ms-2" %>
+                <%= link_to categories_path, class: "nav-link btn btn-secondary text-white ms-2" do %>
+                  <i class="bi bi-tags"></i> <%= t('categories.index.title') %>
+                <% end %>
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "Entrar", new_user_session_path, class: "nav-link" %>
+                <%= link_to new_user_session_path, class: "nav-link" do %>
+                  <i class="bi bi-box-arrow-in-right"></i> <%= t('devise.shared.links.sign_in') %>
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "Cadastrar", new_user_registration_path, class: "nav-link" %>
+                <%= link_to new_user_registration_path, class: "nav-link" do %>
+                  <i class="bi bi-person-plus"></i> <%= t('devise.shared.links.sign_up') %>
+                <% end %>
               </li>
             <% end %>
 
@@ -69,16 +107,23 @@
       </div>
     </nav>
 
-
     <main class="container mt-4">
       <% if notice %>
-        <div class="alert alert-success"><%= notice %></div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <i class="bi bi-check-circle-fill"></i> <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<%= t('common.close') %>"></button>
+        </div>
       <% end %>
       <% if alert %>
-        <div class="alert alert-danger"><%= alert %></div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="bi bi-exclamation-triangle-fill"></i> <%= alert %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<%= t('common.close') %>"></button>
+        </div>
       <% end %>
       
       <%= yield %>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

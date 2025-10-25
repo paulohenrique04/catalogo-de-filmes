@@ -11,18 +11,25 @@
       <h2 class="card-title"><%= @movie.title %></h2>
       <% if @movie.image.attached? %>
         <%= image_tag @movie.image, width: 200 %>
+      <% else %>
+        <div class="text-center border rounded p-4" style="width: 200px;">
+          <div class="text-muted">
+            <i class="bi bi-image fs-1"></i>
+            <p class="mt-2 mb-0"><%= t('movies.index.no_image') %></p>
+          </div>
+        </div>
       <% end %>
-      <p class="card-text"><strong>Diretor:</strong> <%= @movie.director %></p>
-      <p class="card-text"><strong>Ano:</strong> <%= @movie.release_year %></p>
-      <p class="card-text"><strong>Duração:</strong> <%= @movie.duration %> minutos</p>
-      <p class="card-text"><strong>Sinopse:</strong></p>
+      <p class="card-text"><strong><%= t('movies.show.director') %>:</strong> <%= @movie.director %></p>
+      <p class="card-text"><strong><%= t('movies.show.release_year') %>:</strong> <%= @movie.release_year %></p>
+      <p class="card-text"><strong><%= t('movies.show.duration') %>:</strong> <%= @movie.duration %> <%= t('common.minutes') %></p>
+      <p class="card-text"><strong><%= t('movies.show.synopsis') %>:</strong></p>
       <p><%= @movie.synopsis %></p>
       <p>
-        <strong>Categorias:</strong>
+        <strong><%= t('movies.show.categories') %>:</strong>
         <%= @movie.categories.map(&:name).join(", ") %>
       </p>
       <p>
-        <strong>Tags:</strong>
+        <strong><%= t('movies.show.tags') %>:</strong>
         <%= @movie.tags.map(&:name).join(", ") %>
       </p>
     </div>
@@ -30,24 +37,28 @@
 
   <div class="d-flex gap-2 mb-4">
     <% if user_signed_in? && current_user == @movie.user %>
-      <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-primary" %>
-      <%= link_to "Back to movies", movies_path, class: "btn btn-secondary" %>
-      <%= button_to "Destroy this movie", @movie, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <%= link_to t('movies.show.edit_movie'), edit_movie_path(@movie), class: "btn btn-primary" %>
+      <%= link_to t('movies.show.back_to_movies'), movies_path, class: "btn btn-secondary" %>
+      <%= button_to t('movies.show.destroy_movie'), @movie, method: :delete, data: { confirm: t('common.messages.are_you_sure') }, class: "btn btn-danger" %>
     <% else %>
-      <%= link_to "Back to movies", movies_path, class: "btn btn-secondary" %>
+      <%= link_to t('movies.show.back_to_movies'), movies_path, class: "btn btn-secondary" %>
     <% end %>
   </div>
 
   <hr>
 
-  <h4>Comentários (<%= @movie.comments.count %>)</h4>
+  <h4><%= t('movies.show.comments_count', count: @movie.comments.count) %></h4>
 
-  <% @movie.comments.order(created_at: :desc).each do |comment| %>
-    <div class="border rounded p-2 mb-2">
-      <strong><%= comment.author_name %>:</strong>
-      <p><%= comment.content %></p>
-      <small class="text-muted"><%= l(comment.created_at, format: :short) %></small>
-    </div>
+  <% if @movie.comments.any? %>
+    <% @movie.comments.order(created_at: :desc).each do |comment| %>
+      <div class="border rounded p-2 mb-2">
+        <strong><%= comment.author_name %>:</strong>
+        <p><%= comment.content %></p>
+        <small class="text-muted"><%= l(comment.created_at, format: :short) %></small>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-muted"><%= t('common.no_comments') %></p>
   <% end %>
 
   <%= render "comments/form", movie: @movie, comment: @comment %>

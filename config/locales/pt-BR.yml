@@ -1,2 +1,308 @@
 pt-BR:
-  movie: "Filme"
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de Senha"
+        current_password: "Senha Atual"
+        name: "Nome"
+        remember_me: "Lembrar-me"
+      movie:
+        title: "Título"
+        synopsis: "Sinopse"
+        release_year: "Ano de Lançamento"
+        duration: "Duração"
+        director: "Diretor"
+        image: "Poster"
+        categories: "Categorias"
+        category_ids: "Categorias"
+      category:
+        name: "Nome"
+      comment:
+        author_name: "Nome do Autor"
+        content: "Conteúdo"
+    models:
+      user: "Usuário"
+      movie: "Filme"
+      category: "Categoria"
+      comment: "Comentário"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "não pode ficar em branco"
+              invalid: "não é válido"
+              taken: "já está em uso"
+            password:
+              blank: "não pode ficar em branco"
+              too_short: "é muito curta (mínimo: %{count} caracteres)"
+              confirmation: "não coincide com a confirmação"
+            password_confirmation:
+              blank: "não pode ficar em branco"
+              confirmation: "não coincide com a senha"
+            current_password:
+              blank: "não pode ficar em branco"
+              invalid: "não é válida"
+            name:
+              blank: "não pode ficar em branco"
+        movie:
+          attributes:
+            title:
+              blank: "não pode ficar em branco"
+            synopsis:
+              blank: "não pode ficar em branco"
+            release_year:
+              blank: "não pode ficar em branco"
+              not_a_number: "deve ser um número"
+            duration:
+              blank: "não pode ficar em branco"
+              not_a_number: "deve ser um número"
+            director:
+              blank: "não pode ficar em branco"
+            category_ids:
+              blank: "é obrigatório selecionar pelo menos uma categoria"
+
+  errors:
+    messages:
+      blank: "não pode ficar em branco"
+      invalid: "não é válido"
+      taken: "já está em uso"
+      too_short: "é muito curto (mínimo: %{count} caracteres)"
+      confirmation: "não coincide com a confirmação"
+    attributes:
+      current_password:
+        blank: "não pode ficar em branco"
+        invalid: "não é válida"
+
+  helpers:
+    label:
+      user:
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de Senha"
+        current_password: "Senha Atual"
+        name: "Nome"
+        remember_me: "Lembrar-me"
+      movie:
+        title: "Título"
+        synopsis: "Sinopse"
+        release_year: "Ano de Lançamento"
+        duration: "Duração (minutos)"
+        director: "Diretor"
+        image: "Poster"
+        category_ids: "Categorias"
+      category:
+        name: "Nome da Categoria"
+      comment:
+        author_name: "Seu nome"
+        content: "Comentário"
+
+  devise:
+    shared:
+      links:
+        sign_in: "Entrar"
+        sign_up: "Cadastrar"
+        forgot_password: "Esqueceu sua senha?"
+        confirmation_instructions: "Não recebeu instruções de confirmação?"
+        unlock_instructions: "Não recebeu instruções de desbloqueio?"
+        didn_t_receive_confirmation_instructions: "Não recebeu instruções de confirmação?"
+        didn_t_receive_unlock_instructions: "Não recebeu instruções de desbloqueio?"
+        send_me_reset_password_instructions: "Envie instruções de redefinição de senha"
+    sessions:
+      new:
+        sign_in: "Entrar"
+        remember_me: "Lembrar-me"
+        email_placeholder: "seu@email.com"
+        password_placeholder: "Sua senha"
+        no_account: "Não tem uma conta?"
+      signed_in: "Login realizado com sucesso."
+      signed_out: "Logout realizado com sucesso."
+      already_signed_out: "Saiu com sucesso."
+      destroy:
+        sign_out: "Sair"
+    registrations:
+      new:
+        sign_up: "Cadastrar"
+        name_placeholder: "Digite seu nome"
+        email_placeholder: "exemplo@dominio.com"
+        password_placeholder: "Digite sua senha"
+        password_confirmation_placeholder: "Confirme sua senha"
+        minimum_chars: "(%{count} caracteres no mínimo)"
+        already_have_account: "Já tem uma conta?"
+      edit:
+        edit_profile: "Editar Perfil"
+        cancel_account: "Cancelar minha conta"
+        update: "Atualizar"
+        leave_blank: "deixe em branco se não quiser alterar"
+        are_you_sure: "Tem certeza?"
+        we_need_your_current_password: "precisamos de sua senha atual para confirmar suas alterações"
+        errors_header: "%{count} erro(s) impediram que suas alterações fossem salvas:"
+        name_placeholder: "Digite seu nome"
+        email_placeholder: "Digite seu email"
+        waiting_confirmation: "Atualmente aguardando confirmação para"
+        leave_blank: "Deixe em branco se não quiser alterar"
+        minimum_chars: "caracteres mínimo"
+        unhappy: "Insatisfeito?"
+      signed_up: "Cadastro realizado com sucesso."
+      signed_up_but_inactive: "Você foi cadastrado com sucesso. No entanto, não foi possível fazer login porque sua conta não foi ativada."
+      signed_up_but_locked: "Você foi cadastrado com sucesso. No entanto, não foi possível fazer login porque sua conta está bloqueada."
+      signed_up_but_unconfirmed: "Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, abra o link para ativar sua conta."
+      update_needs_confirmation: "Você atualizou sua conta com sucesso, mas precisamos verificar seu novo endereço de e-mail. Por favor, verifique seu e-mail e clique no link de confirmação para finalizar a confirmação do seu novo endereço de e-mail."
+      updated: "Sua conta foi atualizada com sucesso."
+      destroyed: "Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve."
+    passwords:
+      new:
+        forgot_password: "Esqueceu sua senha?"
+      edit:
+        change_password: "Alterar sua senha"
+      send_instructions: "Dentro de alguns minutos, você receberá um e-mail com instruções para a redefinição da sua senha."
+      updated: "Sua senha foi alterada com sucesso. Você está logado."
+      send_paranoid_instructions: "Se o seu e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha em seu e-mail."
+    confirmations:
+      new:
+        resend_confirmation: "Reenviar instruções de confirmação"
+      send_instructions: "Dentro de alguns minutos, você receberá um e-mail com instruções sobre como confirmar sua conta."
+      send_paranoid_instructions: "Se o seu e-mail existir em nosso banco de dados, você receberá um e-mail com instruções sobre como confirmar sua conta."
+      confirmed: "Sua conta foi confirmada com sucesso."
+    unlocks:
+      new:
+        resend_unlock: "Reenviar instruções de desbloqueio"
+      send_instructions: "Dentro de alguns minutos, você receberá um e-mail com instruções sobre como desbloquear sua conta."
+      send_paranoid_instructions: "Se o seu e-mail existir em nosso banco de dados, você receberá em alguns minutos um e-mail com instruções para desbloquear sua conta."
+      unlocked: "Sua conta foi desbloqueada com sucesso. Por favor, faça login para continuar."
+    mailer:
+      confirmation_instructions:
+        subject: "Instruções de confirmação"
+      reset_password_instructions:
+        subject: "Instruções de redefinição de senha"
+      unlock_instructions:
+        subject: "Instruções de desbloqueio"
+    failures:
+      unauthenticated: "Você precisa fazer login ou se cadastrar antes de continuar."
+      unconfirmed: "Antes de continuar, confirme sua conta."
+      locked: "Sua conta está bloqueada."
+      invalid: "E-mail ou senha inválidos."
+      invalid_token: "Token de autenticação inválido."
+      timeout: "Sua sessão expirou. Por favor, faça login novamente para continuar."
+      inactive: "Sua conta ainda não foi ativada."
+      already_authenticated: "Você já está autenticado."
+  
+  time:
+    formats:
+      short: "%d/%m/%Y %H:%M"
+      long: "%d de %B de %Y às %H:%M"
+    am: "am"
+    pm: "pm"
+  
+  date:    
+    formats:
+      short: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+
+  movies:
+    index:
+      title: "Catálogo de Filmes"
+      search_placeholder: "Buscar por título, diretor ou ano..."
+      filter_category: "Filtrar por categoria"
+      filter_year: "Ano de lançamento"
+      filter_director: "Filtrar por diretor"
+      filter_button: "Filtrar"
+      no_image: "Sem poster disponível"
+      view_details: "Ver detalhes"
+      comments: "Comentários"
+    show:
+      director: "Diretor"
+      release_year: "Ano"
+      duration: "Duração"
+      synopsis: "Sinopse"
+      categories: "Categorias"
+      tags: "Tags"
+      edit_movie: "Editar filme"
+      back_to_movies: "Voltar para filmes"
+      destroy_movie: "Excluir filme"
+      comments: "Comentários"
+      comments_count: "Comentários (%{count})"
+    form:
+      new_movie: "Novo Filme"
+      edit_movie: "Editar Filme"
+      title_placeholder: "Digite o título do filme"
+      ai_search_button: "Buscar dados com IA"
+      ai_loading: "Buscando informações do filme..."
+      ai_hint: "Digite o título e clique em 'Buscar dados com IA' para preencher automaticamente"
+      synopsis_placeholder: "Escreva a sinopse"
+      release_year_placeholder: "Ex: 2025"
+      duration_placeholder: "Duração em minutos"
+      director_placeholder: "Nome do diretor"
+      categories_hint: "Segure Ctrl (Windows/Linux) ou Cmd (Mac) para selecionar múltiplas categorias"
+      categories_prompt: "Selecione as categorias..."
+      submit_create: "Criar Filme"
+      submit_update: "Atualizar Filme"
+      errors_header: "%{count} erro(s) impediram que este filme fosse salvo:"
+    new:
+      add_movie: "Adicionar Filme"
+      back_to_home: "Voltar para Home"
+    edit:
+      show_this_movie: "Ver este filme"
+      back_to_movies: "Voltar para filmes"
+
+  categories:
+    index:
+      title: "Categorias"
+      add_category: "Adicionar Categoria"
+      name: "Nome"
+      actions: "Ações"
+      edit: "Editar"
+      delete: "Excluir"
+      no_categories: "Nenhuma categoria cadastrada ainda."
+    form:
+      new_category: "Nova Categoria"
+      edit_category: "Editar Categoria"
+      name_placeholder: "Informe o nome da categoria"
+      save: "Salvar"
+      back: "Voltar"
+      errors_header: "Foram encontrados erros:"
+
+  comments:
+    form:
+      add_comment: "Adicionar Comentário"
+      author_name_placeholder: "Digite seu nome"
+      content_placeholder: "Escreva seu comentário"
+      submit: "Enviar"
+  
+  tags:
+    form:
+      tags_label: "Tags"
+      tag_placeholder: "Digite uma tag"
+      add_button: "Adicionar"
+      remove_button: "Remover"
+
+  common:
+    minutes: "minutos"
+    no_comments: "Nenhum comentário ainda."
+    app_name: "Catálogo de Filmes"
+    language: "Idioma"
+    portuguese: "Português"
+    english: "Inglês"
+    locale_changed: "Idioma alterado com sucesso!"
+    toggle_navigation: "Alternar navegação"
+    close: "Fechar"
+    actions:
+      edit: "Editar"
+      delete: "Excluir"
+      save: "Salvar"
+      cancel: "Cancelar"
+      back: "Voltar"
+      submit: "Enviar"
+      filter: "Filtrar"
+      view_details: "Ver detalhes"
+    messages:
+      are_you_sure: "Tem certeza?"
+      successfully_created: "%{resource} criado(a) com sucesso!"
+      successfully_updated: "%{resource} atualizado(a) com sucesso!"
+      successfully_destroyed: "%{resource} excluído(a) com sucesso!"
+      no_records: "Nenhum registro encontrado."
+    datetime:
+      formats:
+        short: "%d/%m/%Y %H:%M"

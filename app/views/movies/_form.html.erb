@@ -2,12 +2,12 @@
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="card shadow-sm rounded-4 p-4">
-        <h2 class="text-center mb-4"><%= movie.new_record? ? "Novo Filme" : "Editar Filme" %></h2>
+        <h2 class="text-center mb-4"><%= movie.new_record? ? t('movies.form.new_movie') : t('movies.form.edit_movie') %></h2>
 
         <%= form_with(model: movie, local: true, id: 'movie-form') do |form| %>
           <% if movie.errors.any? %>
             <div class="alert alert-danger">
-              <h5><%= pluralize(movie.errors.count, "erro") %> impediram que este filme fosse salvo:</h5>
+              <h5><%= t('movies.form.errors_header', count: movie.errors.count) %></h5>
               <ul class="mb-0">
                 <% movie.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -19,57 +19,57 @@
           <!-- Campo de título com botão de busca IA -->
           <div class="mb-3">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <%= form.label :title, "Título", class: "form-label mb-0" %>
+              <%= form.label :title, class: "form-label mb-0" %>
               <button type="button" id="fetch-ai-data" class="btn btn-outline-primary btn-sm">
-                <i class="bi bi-robot"></i> Buscar dados com IA
+                <i class="bi bi-robot"></i> <%= t('movies.form.ai_search_button') %>
               </button>
             </div>
-            <%= form.text_field :title, class: "form-control", placeholder: "Digite o título do filme", id: "movie-title" %>
-            <small class="text-muted">Digite o título e clique em "Buscar dados com IA" para preencher automaticamente</small>
+            <%= form.text_field :title, class: "form-control", placeholder: t('movies.form.title_placeholder'), id: "movie-title" %>
+            <small class="text-muted"><%= t('movies.form.ai_hint') %></small>
           </div>
 
           <div id="ai-loading" class="alert alert-info d-none">
             <div class="d-flex align-items-center">
               <div class="spinner-border spinner-border-sm me-2" role="status">
-                <span class="visually-hidden">Carregando...</span>
+                <span class="visually-hidden"><%= t('common.loading') %></span>
               </div>
-              Buscando informações do filme...
+              <%= t('movies.form.ai_loading') %>
             </div>
           </div>
 
           <div id="ai-error" class="alert alert-danger d-none"></div>
 
           <div class="mb-3">
-            <%= form.label :synopsis, "Sinopse", class: "form-label" %>
-            <%= form.text_area :synopsis, class: "form-control", placeholder: "Escreva a sinopse", rows: 4, id: "movie-synopsis" %>
+            <%= form.label :synopsis, class: "form-label" %>
+            <%= form.text_area :synopsis, class: "form-control", placeholder: t('movies.form.synopsis_placeholder'), rows: 4, id: "movie-synopsis" %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :release_year, "Ano de Lançamento", class: "form-label" %>
-            <%= form.number_field :release_year, class: "form-control", placeholder: "Ex: 2025", id: "movie-release-year" %>
+            <%= form.label :release_year, class: "form-label" %>
+            <%= form.number_field :release_year, class: "form-control", placeholder: t('movies.form.release_year_placeholder'), id: "movie-release-year" %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :duration, "Duração (minutos)", class: "form-label" %>
-            <%= form.number_field :duration, class: "form-control", placeholder: "Duração em minutos", id: "movie-duration" %>
+            <%= form.label :duration, class: "form-label" %>
+            <%= form.number_field :duration, class: "form-control", placeholder: t('movies.form.duration_placeholder'), id: "movie-duration" %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :director, "Diretor", class: "form-label" %>
-            <%= form.text_field :director, class: "form-control", placeholder: "Nome do diretor", id: "movie-director" %>
+            <%= form.label :director, class: "form-label" %>
+            <%= form.text_field :director, class: "form-control", placeholder: t('movies.form.director_placeholder'), id: "movie-director" %>
           </div>
 
           <div class="field mb-3">
-            <%= form.label :image, "Poster" %>
+            <%= form.label :image %>
             <%= form.file_field :image %>
           </div>
 
           <div class="mb-4">
-            <%= form.label :category_ids, "Categorias", class: "form-label fw-semibold" %>
+            <%= form.label :category_ids, class: "form-label fw-semibold" %>
             
             <div class="alert alert-light border py-2">
               <small class="text-muted">
-                <i class="bi bi-mouse"></i> Segure <kbd>Ctrl</kbd> (Windows/Linux) ou <kbd>Cmd</kbd> (Mac) para selecionar múltiplas categorias
+                <i class="bi bi-mouse"></i> <%= t('movies.form.categories_hint') %>
               </small>
             </div>
             
@@ -77,7 +77,7 @@
                 Category.all.order(:name), 
                 :id, 
                 :name, 
-                { include_blank: "Selecione as categorias..." }, 
+                { include_blank: t('movies.form.categories_prompt') }, 
                 { 
                   multiple: true, 
                   class: "form-select",
@@ -87,9 +87,8 @@
 
           <%= render 'tags/form_tags' %>
 
-
           <div class="d-grid">
-            <%= form.submit movie.new_record? ? "Criar Filme" : "Atualizar Filme", class: "btn btn-primary btn-lg" %>
+            <%= form.submit movie.new_record? ? t('movies.form.submit_create') : t('movies.form.submit_update'), class: "btn btn-primary btn-lg" %>
           </div>
         <% end %>
       </div>

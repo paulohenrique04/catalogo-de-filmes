@@ -1,9 +1,9 @@
 <div class="field mb-3">
-  <%= label_tag :tags, "Tags" %>
+  <%= label_tag :tags, t('tags.form.tags_label') %>
 
   <div class="input-group mb-2">
-    <%= text_field_tag "tag_names[]", nil, placeholder: "Digite uma tag", class: "form-control" %>
-    <button type="button" class="btn btn-secondary" onclick="addTagInput()">Adicionar</button>
+    <%= text_field_tag "tag_names[]", nil, placeholder: t('tags.form.tag_placeholder'), class: "form-control" %>
+    <button type="button" class="btn btn-secondary" onclick="addTagInput()"><%= t('tags.form.add_button') %></button>
   </div>
 
   <div id="additional-tags"></div>
@@ -16,8 +16,8 @@
     inputGroup.className = "input-group mb-2";
 
     inputGroup.innerHTML = `
-      <input type="text" name="tag_names[]" class="form-control" placeholder="Digite uma tag">
-      <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">Remover</button>
+      <input type="text" name="tag_names[]" class="form-control" placeholder="<%= t('tags.form.tag_placeholder') %>">
+      <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()"><%= t('tags.form.remove_button') %></button>
     `;
 
     container.appendChild(inputGroup);
