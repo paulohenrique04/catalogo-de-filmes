@@ -53,22 +53,21 @@ Rails.application.configure do
   config.active_job.queue_adapter = :inline
   config.solid_queue.connects_to = false
 
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: ENV['RENDER_EXTERNAL_HOSTNAME'], protocol: 'https' }
+  config.action_mailer.asset_host = "https://#{ENV['RENDER_EXTERNAL_HOSTNAME']}"
 
-  config.action_mailer.default_url_options = {
-    host: ENV["RAILS_MAIL_HOST"],
-    protocol: "https"
-  }
-
+  # Configuração SMTP Gmail
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.smtp_settings = {
-    address:              "smtp.sendgrid.net",
-    port:                 465,
-    domain:               ENV["RAILS_MAIL_HOST"],
-    user_name:            "apikey",
-    password:             ENV["SENDGRID_API_KEY"],
-    authentication:       :plain,
+    address:              "smtp.gmail.com",
+    port:                 587,
+    domain:               "gmail.com",
+    user_name:            ENV["SMTP_USERNAME"],
+    password:             ENV["SMTP_PASSWORD"],
+    authentication:       "plain",
     enable_starttls_auto: true
   }
 
