@@ -1,7 +1,13 @@
 class DeviseMailer < Devise::Mailer
   def reset_password_instructions(record, token, opts = {})
     opts[:subject] = "Redefinir sua senha"
-    html_content = render_to_string(template: 'devise/mailer/reset_password_instructions', locals: { resource: record, token: token })
+
+    @resource = record
+    @token = token
+
+    html_content = render_to_string(
+      template: 'devise/mailer/reset_password_instructions'
+    )
 
     SendgridMailer.send_email(
       to: record.email,
