@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "categories/create"
   get "comments/create"
   resources :movies do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
     collection do
       get 'fetch_ai_data'
     end

@@ -26,10 +26,12 @@ class AiMovieService
         "synopsis": "",
         "year": "",
         "director": "",
-        "duration": ""
+        "duration": "" # Retorne apenas o número de minutos como inteiro, sem texto adicional
       }
 
       Se não souber algum dado, escreva "Desconhecido".  
+      Para a duração, se não souber, escreva "Desconhecido".
+      **NUNCA inclua a palavra 'minutos' ou qualquer outra unidade**.
       Se não conseguir identificar o filme, retorne todos os campos como "Desconhecido".
     PROMPT
 

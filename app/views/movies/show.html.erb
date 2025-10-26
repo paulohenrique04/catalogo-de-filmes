@@ -56,6 +56,12 @@
         <p><%= comment.content %></p>
         <small class="text-muted"><%= l(comment.created_at, format: :short) %></small>
       </div>
+      <% if user_signed_in? && (current_user == @movie.user || comment.author_name == current_user.name) %>
+        <%= button_to t('common.delete'), movie_comment_path(@movie, comment),
+                      method: :delete,
+                      data: { confirm: t('common.messages.are_you_sure') },
+                      class: "btn btn-sm btn-danger" %>
+      <% end %>
     <% end %>
   <% else %>
     <p class="text-muted"><%= t('common.no_comments') %></p>
