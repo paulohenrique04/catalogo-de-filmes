@@ -78,3 +78,4 @@ gem 'ruby-openai' # Mais recente
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'sendgrid-ruby'
+gem 'sendgrid-actionmailer'
