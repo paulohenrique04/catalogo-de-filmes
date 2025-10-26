@@ -25,8 +25,6 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'paulohab2004@gmail.com'
-  config.action_mailer.raise_delivery_errors = true # debug
-  config.consider_all_requests_local = true # debug
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
