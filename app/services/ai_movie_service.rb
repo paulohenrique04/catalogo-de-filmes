@@ -26,7 +26,7 @@ class AiMovieService
         "synopsis": "",
         "year": "",
         "director": "",
-        "duration": "" # Retorne apenas o número de minutos como inteiro, sem texto adicional
+        "duration": "" # Retorne apenas o número de minutos como string, sem texto adicional
       }
 
       Se não souber algum dado, escreva "Desconhecido".  
